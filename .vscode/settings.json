@@ -1,0 +1,3 @@
+{
+    "explorer.compactFolders": true // if parent directory is empty, shows folder like 'parent/child'
+}
