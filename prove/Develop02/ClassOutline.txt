@@ -1,0 +1,28 @@
+Class: Entry
+Attributes:
+* _response : string
+* _date : string 
+
+Behaviors:
+* DisplayRandomPrompt() : void
+* GetResponse() : void
+* DisplayEntries() : void 
+* GetDate() : void 
+
+
+Class: Journal 
+Attributes:
+* _entries : list<Entry>
+* _fileName : string
+
+Behaviors:
+* SaveFile() : void
+* LoadFile() : void
+
+
+Class: Prompter
+Attributes:
+* _prompts : list<string>
+
+Behaviors:
+* DisplayPrompt : void
