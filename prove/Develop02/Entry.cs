@@ -11,12 +11,12 @@ public class Entry {
     public string date;
 
     public Entry() {
-        GetDate();
+        date = Entry.GetDate();
     }
 
-    private void GetDate() {
-        DateTime currentTime = DateTime.Now;
-        date = currentTime.ToShortTimeString();
+    private static string GetDate() {
+        DateTime currentDate = DateTime.Now;
+        return currentDate.ToShortDateString();
     }
 
     public void SaveEntry(string prompt, string response) {
