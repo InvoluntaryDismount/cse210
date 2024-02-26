@@ -7,6 +7,7 @@ public class Entry {
     public List<string> prompts = new List<string>();
 
     public List<string> responses = new List<string>();
+    public List<string> dates = new List<string>();
 
     public string date;
 
@@ -22,6 +23,7 @@ public class Entry {
     public void SaveEntry(string prompt, string response) {
         prompts.Add(prompt);
         responses.Add(response);
+        dates.Add(date);
     }
 
     public void DisplayEntries() {

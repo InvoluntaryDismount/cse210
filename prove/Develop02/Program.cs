@@ -7,7 +7,8 @@ class Program
     static void Main(string[] args)
     {
         bool exit = false;
-        Entry currentEntry = new Entry();
+        Journal currentJournal = new Journal();
+        
         Console.WriteLine("Welcome to the Journal Program!\nPlease selet one of the following choices:");
 
         while (exit!=true) {
@@ -18,16 +19,18 @@ class Program
             switch (choice) {
                 case "1":
                     Console.WriteLine("You have selected: Write");
+                    Entry currentEntry = new Entry();
                     string currentPrompt = Prompter.PromptRandom();
                     string response = Console.ReadLine();
                     currentEntry.SaveEntry(currentPrompt, response);
+                    currentJournal.AddEntry(currentEntry);
                     break;
             }
 
             switch (choice) {
                 case "2":
                     Console.WriteLine("You have selected: Display");
-                    currentEntry.DisplayEntries();
+                    currentJournal.DisplayJournal();
 
                     break;
             }
