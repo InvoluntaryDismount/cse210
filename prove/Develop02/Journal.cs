@@ -20,7 +20,7 @@ public class Journal {
     public void WriteJournal(string filename) {
         using (StreamWriter outputFile = new StreamWriter(filename)){
             foreach (Entry entry in entries) {
-                outputFile.WriteLine($"{entry.date},{entry.prompt},{entry.response}");
+                outputFile.WriteLine($"{entry.date}|{entry.prompt}|{entry.response}");
             }
         }
     }
