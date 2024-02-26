@@ -4,32 +4,26 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Versioning;
 
 public class Entry {
-    public List<string> prompts = new List<string>();
+    public string prompt;
 
-    public List<string> responses = new List<string>();
-    public List<string> dates = new List<string>();
+    public string response;
 
     public string date;
 
-    public Entry() {
-        date = Entry.GetDate();
+// constructor
+    public Entry(string date, string prompt, string response) {
+        this.date = date;
+        this.prompt = prompt;
+        this.response = response;
     }
 
-    private static string GetDate() {
+    public static string GetDate() {
         DateTime currentDate = DateTime.Now;
         return currentDate.ToShortDateString();
     }
 
-    public void SaveEntry(string prompt, string response) {
-        prompts.Add(prompt);
-        responses.Add(response);
-        dates.Add(date);
-    }
-
-    public void DisplayEntries() {
-        for (int i = 0; i < prompts.Count(); i++) {
-            Console.WriteLine($"Date: {date} - Prompt: {prompts[i]}\n{responses[i]}");
-        }
+    public void DisplayEntry() {
+        Console.WriteLine($"Date: {date} - Prompt: {prompt}\n{response}\n");
     }
 }
 

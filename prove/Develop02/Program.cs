@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using System.IO.Enumeration;
 using System.Net;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 
 class Program
@@ -19,10 +22,10 @@ class Program
             switch (choice) {
                 case "1":
                     Console.WriteLine("You have selected: Write");
-                    Entry currentEntry = new Entry();
                     string currentPrompt = Prompter.PromptRandom();
                     string response = Console.ReadLine();
-                    currentEntry.SaveEntry(currentPrompt, response);
+                    string date = Entry.GetDate();
+                    Entry currentEntry = new Entry(date, currentPrompt, response);
                     currentJournal.AddEntry(currentEntry);
                     break;
             }
@@ -31,19 +34,39 @@ class Program
                 case "2":
                     Console.WriteLine("You have selected: Display");
                     currentJournal.DisplayJournal();
-
                     break;
             }
 
             switch (choice) {
                 case "3":
-                    Console.WriteLine("Load");
+                    // dump the old journal
+                    currentJournal.entries.Clear();
+
+                    Console.WriteLine($"You have selected: Load");
+                    Console.WriteLine("What is the name of the file?");
+                    string readFile = Console.ReadLine();
+                    string[] lines = System.IO.File.ReadAllLines(readFile);
+
+                    foreach (string line in lines)
+                    {
+                        string[] parts = line.Split(",");
+                        
+                        string date = parts[0];
+                        string prompt = parts[1];
+                        string response = parts[2];
+                        Entry currentEntry = new Entry(date, prompt, response);
+                        currentJournal.AddEntry(currentEntry);
+                    }
+                    
                     break;
             }
 
             switch (choice) {
                 case "4":
-                    Console.WriteLine("Save");
+                    Console.WriteLine("You have selected: Save");
+                    Console.WriteLine("What is the filename?");
+                    string filename = Console.ReadLine();
+                    currentJournal.WriteJournal(filename);
                     break;
             }
 

@@ -13,14 +13,14 @@ public class Journal {
 
     public void DisplayJournal() {
         foreach (Entry entry in entries) {
-            entry.DisplayEntries();
+            entry.DisplayEntry();
         }
     }
 
     public void WriteJournal(string filename) {
-        using (StreamWriter outputFile = new StreamWriter(fileName)){
+        using (StreamWriter outputFile = new StreamWriter(filename)){
             foreach (Entry entry in entries) {
-                gsdg
+                outputFile.WriteLine($"{entry.date},{entry.prompt},{entry.response}");
             }
         }
     }
