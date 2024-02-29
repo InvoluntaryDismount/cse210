@@ -16,6 +16,10 @@ public class Word {
         this.index = index;
     }
 
+    public static void DisplayWord() {
+
+    }
+
 
 
     
