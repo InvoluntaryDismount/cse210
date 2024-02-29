@@ -1,0 +1,27 @@
+Class: ScriptureReference
+Attributes:
+_book: string
+_chapter: int
+_verse: string
+
+Methods:
+ScriptureReference(string book, int chapter, string verse) : void
+
+
+
+Class: Scriptures
+Attributes:
+
+Methods:
+
+
+
+
+Class: Word
+Attributes:
+_word: string
+_hidden: bool
+_index: int
+
+Methods:
+Word(string text, int index) : void
