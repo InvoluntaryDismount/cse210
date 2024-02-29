@@ -1,0 +1,15 @@
+Class: Activity
+Attributes:
+_name : string
+_activityDescription : string
+
+Methods:
+printActivity() : void
+printDescription : void
+getDuration() : int
+printEndMessage() : void
+loading() : void
+
+
+
+Class: Breathing  :  Activity
