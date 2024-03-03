@@ -7,17 +7,18 @@ abstract class Activity() {
     public abstract void Run();
 
     public void PrintIntroduction() {
-        Console.WriteLine($"\nWelcome to {_name}\n{_activityDescription}");
+        Console.WriteLine($"\nWelcome to {_name}\n\n{_activityDescription}");
     }
 
     public static int GetDuration() {
-        Console.WriteLine("How long, in seconds, would you like for your session? ");
+        Console.WriteLine($"\nHow long, in seconds, would you like for your session? ");
         int duration = int.Parse(Console.ReadLine());
         _duration = duration;
         return duration;
     }
     public void PrintEndMessage() {
         Console.WriteLine($"Congratutlations! You have completed {_name}\nLength of Time: {_duration}");
+        Thread.Sleep(5000);
     }
 
     public void Spinner(int loadTime) {
@@ -34,7 +35,7 @@ abstract class Activity() {
             Thread.Sleep(200);
             Console.Write("\b \b"); // Erase the + character
             
-            Console.Write("--"); // Replace it with the - character
+            Console.Write("-"); // Replace it with the - character
             Thread.Sleep(200);
             Console.Write("\b \b"); // Erase the + character
 
