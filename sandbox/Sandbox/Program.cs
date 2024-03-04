@@ -4,6 +4,15 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Sandbox World!");
+        Device wall = new Device("bigwall");
+
+        wall.Uptime();
+
+        wall.TurnOn();
+        Thread.Sleep(5000);
+        wall.Uptime();
+        Thread.Sleep(5000);
+        wall.TurnOff();
+
     }
 }
