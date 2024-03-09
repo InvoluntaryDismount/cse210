@@ -1,40 +1,63 @@
-public class Device
+public abstract class Device
 {
-    private string name;
-    private DateTime startTime;
-    private bool isOn;
+    protected string _name;
+    protected DateTime _startTime;
+    protected bool isOn;
 
-    public Device(string deviceName)
+    public Device(string device_name)
     {
-        name = deviceName;
+        _name = device_name;
     }
 
-    public void TurnOn()
+    public virtual void TurnOn()
     {
-        this.isOn = true;
-        this.startTime = DateTime.Now;
-        Console.WriteLine($"{name} has been turned on");
-    }
-    public void TurnOff()
-    {
-        this.isOn = false;
-        Console.WriteLine($"{name} has been turned off");
-    }
-
-    public void Uptime()
-    {
-        if (isOn == true)
+        // Only allow turning on if the device is currently off
+        if (!isOn)
         {
-            DateTime currentTime = DateTime.Now;
-            var uptime = currentTime - startTime;
-            Console.WriteLine($"{name} has been running for {uptime}");
+            isOn = true;
+            _startTime = DateTime.Now;
+            Console.WriteLine($"{_name} has been turned on at {_startTime}");
         }
-
         else
         {
-            Console.WriteLine($"{name} has not been turned on");
+            Console.WriteLine($"{_name} is already turned on");
         }
     }
+
+    public virtual void TurnOff()
+    {
+        // Only allow turning off if the device is currently on
+        if (isOn)
+        {
+            isOn = false;
+            TimeSpan uptime = DateTime.Now - _startTime;
+            Console.WriteLine($"{_name} has been turned off. Uptime: {uptime}");
+        }
+        else
+        {
+            Console.WriteLine($"{_name} is already turned off");
+        }
+    }
+
+    public TimeSpan GetCurrentUptime()
+    {
+        if (isOn)
+        {
+            return DateTime.Now - _startTime;
+        }
+        else
+        {
+            Console.WriteLine($"{_name} is currently turned off. Uptime is not applicable.");
+            return TimeSpan.Zero; // Return zero if the device is off
+        }
+    }
+
+    public void DisplayUptime()
+    {
+        Console.WriteLine($"Uptime: {GetCurrentUptime()}");
+    }
+
+    public abstract void DisplaySummary();
 
 
 }
