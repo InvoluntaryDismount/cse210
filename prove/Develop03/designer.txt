@@ -1,19 +1,22 @@
 Class: ScriptureReference
 Attributes:
-_book: string
-_chapter: int
-_verse: string
+_book : string
+_chapter : int
+_verse : string
+_scripture : Scripture
 
 Methods:
-ScriptureReference(string book, int chapter, string verse) : void
+ScriptureReference(string book, int chapter, string verse, string scripture) : void
 
 
 
-Class: Scriptures
+Class: Scripture
 Attributes:
+_words : List<Word>
 
 Methods:
-
+HideWords()
+DisplayWords()
 
 
 
@@ -21,7 +24,6 @@ Class: Word
 Attributes:
 _word: string
 _hidden: bool
-_index: int
 
 Methods:
-Word(string text, int index) : void
+Word(string text) : void

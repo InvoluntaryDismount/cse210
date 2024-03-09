@@ -3,21 +3,25 @@
 
 public class Word {
     private string text;
-    private bool hidden;
+    public bool hidden;
+    public int index;
 
-    private int index;
-
-    public Word(string text) {
+    public Word(string text, int wordIndex) {
         this.text = text;
-    }
+        index = wordIndex;
+        }
 
-    public Word(string text, int index) {
-        this.text = text;
-        this.index = index;
-    }
-
-    public static void DisplayWord() {
-
+    public void DisplayWord() {
+        if (hidden == false) {
+            Console.Write($"{text} ");
+        }
+        else {
+            for (int i = 0; i < text.Length; i++)
+            {
+                Console.Write("_");
+            }
+            Console.Write(" ");
+        }
     }
 
 
