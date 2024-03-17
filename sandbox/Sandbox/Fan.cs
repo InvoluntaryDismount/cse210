@@ -5,13 +5,12 @@ public class Fan : Device
     // constructor
     public Fan(string name) : base(name)
     {
-        _speed = 0;
+        _speed = 60;
     }
 
     public override void TurnOn()
     {
         base.TurnOn();
-        SetFanSpeed();
     }
     public override void TurnOff()
     {
@@ -19,10 +18,9 @@ public class Fan : Device
         _speed = 0;
     }
 
-    public void SetFanSpeed()
+    public void SetFanSpeed(int speedRPM)
     {
-        Console.WriteLine($"What speed (in rpm) would you like to set for {_name}?");
-        _speed = int.Parse(Console.ReadLine());    
+        _speed = speedRPM;    
     }
 
     public int GetFanSpeed()

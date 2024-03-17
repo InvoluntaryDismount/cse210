@@ -1,11 +1,34 @@
 public class Room
 {
     private string _name;
-    private List<Device> devices;
+    public List<Device> devices = new List<Device>();
 
     public Room(string name)
     {
         _name = name;
-        Lights lights1 = new Lights($"{_name} Lights", "white");
+    }
+
+    public void TurnOffAll()
+    {
+        foreach (var device in devices)
+        {
+            device.TurnOff();
+        }
+    }
+
+    public void TurnOnAll()
+    {
+        foreach (var device in devices)
+        {
+            device.TurnOn();
+        }
+    }
+
+    public void RoomSummary()
+    {
+        foreach (var device in devices)
+        {
+            device.DisplaySummary();
+        }
     }
 }

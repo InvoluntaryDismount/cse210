@@ -4,44 +4,57 @@ class Program
 {
     static void Main(string[] args)
     {
-        while (true)
-        {
-            Console.WriteLine("Menu:");
-            Console.WriteLine("1. Option 1");
-            Console.WriteLine("2. Option 2");
-            Console.WriteLine("3. Option 3");
-            Console.WriteLine("4. Exit");
+        House house1 = new House("my house");
 
-            Console.Write("Enter your choice: ");
-            string userInput = Console.ReadLine();
 
-            switch (userInput)
-            {
-                case "1":
-                    Console.WriteLine("You selected Option 1");
-                    // Add logic for Option 1
-                    break;
+        // create living room
+        Room livingRoom = new Room("living room");
+        Lights livingRoomLights = new Lights("living room lights", "white");
+        Fan livingRoomFan = new Fan("living room fan");
 
-                case "2":
-                    Console.WriteLine("You selected Option 2");
-                    // Add logic for Option 2
-                    break;
+        // add living room devices and room to lists
+        livingRoom.devices.Add(livingRoomLights);
+        livingRoom.devices.Add(livingRoomFan);
+        house1.rooms.Add(livingRoom);
 
-                case "3":
-                    Console.WriteLine("You selected Option 3");
-                    // Add logic for Option 3
-                    break;
+        // create kitchen
+        Room kitchen = new Room("kitchen");
+        Lights kitchenLights = new Lights("kitchen lights", "white");
+        Fan kitchenFan = new Fan("kitchen fan");
 
-                case "4":
-                    Console.WriteLine("Exiting the program. Goodbye!");
-                    return;
+        // add kitchen devices and room to lists
+        kitchen.devices.Add(kitchenLights);
+        kitchen.devices.Add(kitchenFan);
+        house1.rooms.Add(kitchen);
 
-                default:
-                    Console.WriteLine("Invalid choice. Please enter a valid option.");
-                    break;
-            }
+        // get start summary
+        house1.GetHouseSummary();
 
-            Console.WriteLine(); // Add a newline for better readability
-        }
+        Thread.Sleep(5000);
+
+        // turn on and off
+        kitchenFan.SetFanSpeed(10000);
+        livingRoomLights.TurnOn();
+        livingRoomLights.SetColor("purple");
+
+        // get midway summary
+        house1.GetHouseSummary();
+        Thread.Sleep(5000);
+
+        // turn all on
+        house1.TurnOnAll();
+
+        // get second midway summary
+        house1.GetHouseSummary();
+        Thread.Sleep(5000);
+
+        // turn all off
+        house1.TurnOffAll();
+
+        // get final summary
+        house1.GetHouseSummary();
+        Thread.Sleep(5000);
+
+
     }
 }

@@ -11,4 +11,9 @@ public class Lights : Device
     {
         Console.WriteLine($"{_name} has been running for {GetCurrentUptime()} and is the color {_color}.");
     }
+
+    public void SetColor(string color)
+    {
+        _color = color;
+    }
 }
