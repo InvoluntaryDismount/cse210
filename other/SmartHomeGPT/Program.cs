@@ -6,7 +6,7 @@ Room livingRoom = new Room { Name = "Living Room" };
 SmartLight livingRoomLight = new SmartLight { Name = "Living Room Light" };
 SmartTV livingRoomTV = new SmartTV { Name = "Living Room TV" };
 
-livingRoom.Devices.Add(livingRoomLight);
+livingRoom.Devices.Add(livingRoomLight); 
 livingRoom.Devices.Add(livingRoomTV);
 myHouse.Rooms.Add(livingRoom);
 
