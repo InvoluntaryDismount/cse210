@@ -1,4 +1,4 @@
-public abstract class Goal 
+public class Goal 
 {
     private string _goalName;
     private string _goalDescription;
@@ -11,8 +11,13 @@ public abstract class Goal
         _goalDescription = desc;
         _pointValue = value;
     }
-
-    public abstract void Run();
+    public Goal(string name, string desc, int value, bool isDone)
+    {
+        _goalName = name;
+        _goalDescription = desc;
+        _pointValue = value;
+        _isDone = isDone;
+    }
 
     public void SetName(string name)
     {
@@ -38,6 +43,16 @@ public abstract class Goal
     {
         _pointValue = value;
     }
+
+    public int GetValue()
+    {
+        return _pointValue;
+    }
+
+    public bool GetIsDone()
+    {
+        return _isDone;
+    }
     
     public virtual void DisplayGoal()
     {
@@ -49,6 +64,12 @@ public abstract class Goal
         {
             Console.Write($"[ ] {_goalName} ({_goalDescription})");
         }
+    }
+
+    public virtual string Summarise()
+    {
+        string summary = $"{GetName()}|{GetDescription()}|{GetValue()}|{GetIsDone()}";
+        return summary;
     }
 
 }

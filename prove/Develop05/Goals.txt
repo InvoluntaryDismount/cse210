@@ -1,0 +1,3 @@
+First Simple Goal|This is the first goal of many :)|100|False
+Checklist Goal|This is the first checklist goal of manu|100|False|0|0|1000
+Eternal Goal|This is my first eternal goal|10|False
