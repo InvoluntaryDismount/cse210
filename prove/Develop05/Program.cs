@@ -97,11 +97,9 @@ class Program
                             Console.WriteLine("Invalid option selected");
                             Thread.Sleep(1000);
                             break;
-
-                    }
-                    // Add code to handle creating a new goal
-                    
+                    }                
                     break;
+
                 case "2":
                     Console.WriteLine("Listing goals...");
                     Thread.Sleep(1000);
@@ -110,24 +108,43 @@ class Program
                     MainHandle.DisplayGoals();
                     Console.WriteLine("Hit 'enter' to continue");
                     Console.ReadLine();
-
                     break;
+
                 case "3":
                     Console.WriteLine("Saving goals...");
                     // Add code to handle saving goals
                     MainHandle.Save();
                     Console.WriteLine("Goals successfully saved");
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2000);
                     break;
+
                 case "4":
                     Console.WriteLine("Loading goals...");
                     // Add code to handle loading goals
                     MainHandle.Load();
+                    Console.WriteLine("Goals successfully loaded");
+                    Thread.Sleep(2000);
                     break;
+
                 case "5":
                     Console.WriteLine("Recording event...");
                     // Add code to handle recording an event
+                    // Ask which goal was accomplished
+                    Console.WriteLine("Which goal did you accomplish?");
+                    var index = 1;
+                    foreach (var goal in MainHandle._goals)
+                    {
+                        Console.WriteLine($"{index}. {goal.GetName()}");
+                        index++;
+                    }
+
+                    var input = int.Parse(Console.ReadLine());
+                    
+                    // update that goal
+                    MainHandle._goals[input-1].UpdateGoal(CurrentScore);
+                    Thread.Sleep(500);
                     break;
+
                 case "6":
                     Console.WriteLine("Quitting...");
                     running = false;

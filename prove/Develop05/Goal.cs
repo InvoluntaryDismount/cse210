@@ -1,9 +1,9 @@
 public class Goal 
 {
-    private string _goalName;
-    private string _goalDescription;
-    private int _pointValue;
-    private bool _isDone;
+    protected string _goalName;
+    protected string _goalDescription;
+    protected int _pointValue;
+    protected bool _isDone;
 
     public Goal(string name, string desc, int value)
     {
@@ -70,6 +70,13 @@ public class Goal
     {
         string summary = $"{GetName()}|{GetDescription()}|{GetValue()}|{GetIsDone()}";
         return summary;
+    }
+
+    public virtual void UpdateGoal(Score score)
+    {
+        _isDone = true;
+        score.AddScore(_pointValue);
+
     }
 
 }

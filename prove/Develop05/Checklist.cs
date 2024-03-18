@@ -43,4 +43,16 @@ class Checklist : Goal
         string summary = $"{GetName()}|{GetDescription()}|{GetValue()}|{GetIsDone()}|{GetCompleted()}|{GetTarget()}|{GetBonus()}";
         return summary;
     }
+
+    public override void UpdateGoal(Score score)
+    {
+        score.AddScore(base._pointValue);
+        _completed++;
+        if (_completed == _compTarget)
+        {
+            base._isDone = true;
+            score.AddScore(_bonus);
+        }
+
+    }
 }

@@ -1,6 +1,6 @@
 public class Handler
 {
-    private List<Goal> _goals = new List<Goal>();
+    public List<Goal> _goals = new List<Goal>();
     private string _filepath;
 
     // create constructor
