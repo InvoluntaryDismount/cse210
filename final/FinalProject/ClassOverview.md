@@ -6,6 +6,7 @@
 
 public class Tracker
 Attributes:
+private string _name
 private int _total
 private int _input
 private int _goal
@@ -17,6 +18,7 @@ private int GetTotal()
 private void SetTotal()
 private int GetGoal()
 private void SetGoal()
+public void DisplayTotal()
 public abstract CalcMacroGoal()
 
 
