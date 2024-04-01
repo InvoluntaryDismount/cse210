@@ -13,19 +13,19 @@ public abstract class Tracker {
         _total = _total + _input;
     }
 
-    private int GetTotal() {
+    public int GetTotal() {
         return _total;
     }
 
-    private void SetTotal(int total) {
+    public void SetTotal(int total) {
         _total = total;
     }
 
-    private int GetGoal() {
+    public int GetGoal() {
         return _goal;
     }
 
-    private void SetGoal(int goal) {
+    public void SetGoal(int goal) {
         _goal = goal;
     }
 
@@ -33,6 +33,6 @@ public abstract class Tracker {
         Console.WriteLine($"You have consumed {_total}g of {_name}");
     }
 
-    public abstract void CalcMacroGoal();
+    public abstract double CalcMacroGoal(double tdee);
 
 }
