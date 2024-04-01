@@ -1,15 +1,19 @@
 public abstract class Tracker {
-    private string _name;
-    private int _total;
-    private int _input;
-    private int _goal;
-    private DateTime _inputTime;
+    protected string _name;
+    protected int _total;
+    protected int _input;
+    protected int _goal;
+    protected DateOnly _inputDate;
 
+    public Tracker()
+    {
 
-    private void UpdateTotal() {
-        Console.Write($"How much would you like to add to {_name}? ");
+    }
+
+    public virtual void UpdateTotal() {
+        Console.Write($"How much would you like to add to {_name}(g)? ");
         _input = int.Parse(Console.ReadLine());
-        _inputTime = DateTime.Now;
+        _inputDate = DateOnly.FromDateTime(DateTime.Now);
         _total = _total + _input;
     }
 

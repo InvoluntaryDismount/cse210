@@ -23,4 +23,13 @@ public class DailyTotal{
         _totalCarbs = carbs.GetTotal();
         _totalCal = cal.GetTotal();
     }
+
+    public void CheckDate()
+    {
+        if (_date != DateOnly.FromDateTime(DateTime.Now))
+        {
+         // save function and open instantiate a new DailyTotal
+         Console.WriteLine("New day detected. Creating new DailyTotal");   
+        }
+    }
 }

@@ -1,4 +1,5 @@
 public class Profile {
+    private string _profileFilepath;
     private string _name;
     private string _gender;
     private int _weightKg;
@@ -7,10 +8,22 @@ public class Profile {
     private double _activityMult;
     private double _bmr;
     private double _TDEE;
+    private List<DailyTotal> _totals;
 
     public Profile()
     {
-        
+
+    }
+
+    public string GetFilepath()
+    {
+        return _profileFilepath;
+    }
+
+    public void SetFilepath()
+    {
+        Console.WriteLine("What would you like to set the filepath to?");
+        _profileFilepath = Console.ReadLine();
     }
 
     private void CalcBMR() {
@@ -93,13 +106,32 @@ public class Profile {
         }
         Thread.Sleep(500);
 
-        Console.Clear();
-
+        // perform calculations
         CalcBMR();
         CalcTDEE();
 
-        Console.WriteLine($"{_name} profile has been set up");
+        Console.Clear();
 
-        // save profile here too
+        // get filepath to save profile
+        Console.Write("Enter a filepath for the profile: ");
+        _profileFilepath = Console.ReadLine();
+        Thread.Sleep(500);
+
+        _totals = new List<DailyTotal>();
+
+        Save();
+
+        Console.WriteLine($"{_name}, your profile has been set up");
+
+    }
+
+    public void Save()
+    {
+        // save profile
+    }
+
+    public void Load(string filepath)
+    {
+        // load profile
     }
 }
