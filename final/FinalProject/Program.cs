@@ -4,6 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello FinalProject World!");
+        Profile P = new Profile();
+        P.SetProfile();
+
+        Console.WriteLine($"BMR: {P.GetBmr()} TDEE: {P.GetTDEE()}");
+
     }
 }
