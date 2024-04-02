@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Text.Json;
 using System.Xml.Serialization;
 
 class Program
@@ -15,13 +16,6 @@ class Program
         Fats aFats = new Fats();
         Cal aCal = new Cal();
 
-        
-
-        XmlSerializer serializer = new XmlSerializer(typeof(Profile));
-
-        // if (currentDT.GetDate() != DateOnly.FromDateTime(DateTime.Now)) {
-
-        // }
 
         bool run = true;
         while(run)
@@ -115,10 +109,10 @@ class Program
                     
                     Console.WriteLine("What is the name of the profile you would like to load?");
                     var loadName = Console.ReadLine();
-                    using (TextReader reader = new StreamReader($"files\\profiles\\{loadName}.xml"))
-                    {
-                        aProfile = (Profile)serializer.Deserialize(reader);
-                    }
+
+                    string rjson = File.ReadAllText($"files\\profiles\\{loadName}.json");
+                    aProfile = JsonSerializer.Deserialize<Profile>(rjson);
+
 
                     break;
 
@@ -126,10 +120,16 @@ class Program
                     Console.WriteLine("Save Profile");
 
                     //serialize profile
-                    using (TextWriter writer = new StreamWriter($"files\\profiles\\{aProfile.GetName()}.xml"))
-                    {
-                        serializer.Serialize(writer, aProfile);
-                    }
+
+                    Console.WriteLine(JsonSerializer.Serialize(aProfile));
+                    Thread.Sleep(5000);
+                    string json = JsonSerializer.Serialize(aProfile);
+                    Console.WriteLine(json);
+                    Thread.Sleep(5000);
+                    File.WriteAllText($"files\\profiles\\{aProfile.GetName()}.json", json);
+                    
+                    Console.WriteLine("Save successful");
+                    Thread.Sleep(750);
 
                     break;
                 

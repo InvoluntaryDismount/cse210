@@ -2,33 +2,33 @@ using System.Xml.Serialization;
 
 [Serializable]
 public class Profile {
-    private string _name;
-    private string _gender;
-    private int _weightKg;
-    private int _heightCm;
-    private int _age;
-    private double _activityMult;
-    private double _bmr;
-    private double _TDEE;
-    public DailyTotal dt;
-    public Protein protein;
-    public Fats fats;
-    public Carbs carbs;
-    public Cal cal;
+    public string _name;
+    public string _gender;
+    public int _weightKg;
+    public int _heightCm;
+    public int _age;
+    public double _activityMult;
+    public double _bmr;
+    public double _TDEE;
+    // public DailyTotal dt;
+    // public Protein protein;
+    // public Fats fats;
+    // public Carbs carbs;
+    // public Cal cal;
 
-    public Profile()
-    {
-        dt = new DailyTotal();
-        protein = new Protein();
-        fats = new Fats();
-        carbs = new Carbs();
-        cal = new Cal();
-    }
+    // public Profile()
+    // {
+    //     dt = new DailyTotal();
+    //     protein = new Protein();
+    //     fats = new Fats();
+    //     carbs = new Carbs();
+    //     cal = new Cal();
+    // }
 
-    public void SetDT(DailyTotal dailyTotal)
-    {
-        dt = dailyTotal;
-    }
+    // public void SetDT(DailyTotal dailyTotal)
+    // {
+    //     dt = dailyTotal;
+    // }
     
     // public void SetTrackers(Tracker protein, Tracker fats, Tracker carbs, Tracker cal)
     // {
