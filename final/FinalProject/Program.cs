@@ -15,6 +15,9 @@ class Program
         Fats aFats = new Fats();
         Cal aCal = new Cal();
 
+        aProfile.SetDT(currentDT);
+        aProfile.SetTrackers(aProtein, aFats, aCarbs, aCal);
+
 
         
 
@@ -130,6 +133,23 @@ class Program
                     {
                         serializer.Serialize(writer, aProfile);
                     }
+                    
+                    using (TextWriter writer = new StreamWriter($"dailyTotal\\{aProfile.GetName()}.xml"))
+                    {
+                        serializer.Serialize(writer, aProfile.dt);
+                    }
+
+                    foreach (Tracker t in aProfile.trackers)
+                    {
+                        using (TextWriter writer = new StreamWriter($"{t.GetName()}\\{aProfile.GetName()}.xml"))
+                        {
+                            serializer.Serialize(writer, t);
+                        }
+
+                    }
+
+
+
                     break;
                 
                 case 5:

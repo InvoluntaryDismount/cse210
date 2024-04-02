@@ -16,7 +16,7 @@ public class Profile {
 
     public Profile()
     {
-        
+        trackers = new List<Tracker>();
     }
 
     public void SetDT(DailyTotal dailyTotal)

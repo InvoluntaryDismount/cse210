@@ -1,3 +1,4 @@
+[Serializable]
 public class DailyTotal{
 
     private DateOnly _date;

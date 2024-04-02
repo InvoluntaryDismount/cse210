@@ -1,3 +1,4 @@
+[Serializable]
 public abstract class Tracker {
     protected string _name;
     protected int _total;
@@ -15,6 +16,10 @@ public abstract class Tracker {
         _input = int.Parse(Console.ReadLine());
         _inputDate = DateOnly.FromDateTime(DateTime.Now);
         _total = _total + _input;
+    }
+
+    public string GetName() {
+        return _name;
     }
 
     public int GetTotal() {
