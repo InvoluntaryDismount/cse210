@@ -11,10 +11,25 @@ public class Profile {
     private double _activityMult;
     private double _bmr;
     private double _TDEE;
+    public DailyTotal dt;
+    public List<Tracker> trackers;
 
     public Profile()
     {
         
+    }
+
+    public void SetDT(DailyTotal dailyTotal)
+    {
+        dt = dailyTotal;
+    }
+    
+    public void SetTrackers(Tracker protein, Tracker fats, Tracker carbs, Tracker cal)
+    {
+        trackers.Add(protein);
+        trackers.Add(fats);
+        trackers.Add(carbs);
+        trackers.Add(cal);
     }
 
     public string GetFilepath()
