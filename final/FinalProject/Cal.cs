@@ -1,3 +1,4 @@
+[Serializable]
 public class Cal : Tracker {
 
         public Cal()

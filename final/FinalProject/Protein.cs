@@ -1,3 +1,4 @@
+[Serializable]
 public class Protein : Tracker {
 
     public Protein()

@@ -7,7 +7,7 @@ public abstract class Tracker {
 
     public Tracker()
     {
-
+        _total = 0;
     }
 
     public virtual void UpdateTotal() {

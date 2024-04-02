@@ -1,3 +1,4 @@
+[Serializable]
 public class Carbs : Tracker {
 
         public Carbs()

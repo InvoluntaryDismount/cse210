@@ -5,12 +5,23 @@ public class DailyTotal{
     private int _totalFats;
     private int _totalCarbs;
     private int _totalCal;
+    private List<int> _totals = new List<int>(4);
+    public const int proteinIndex = 0;
+    public const int fatsIndex = 1;
+    public const int carbsIndex = 2;
+    public const int calIndex = 3;
+    Dictionary<DateOnly, DailyTotal> dailyTotals = new Dictionary<DateOnly, DailyTotal>();
+    
 
     public DailyTotal()
     {
         _date = DateOnly.FromDateTime(DateTime.Now);
     }
 
+    public DateOnly GetDate()
+    {
+        return _date;
+    }
     public void SetDate(DateOnly date)
     {
         _date = date;
@@ -23,13 +34,12 @@ public class DailyTotal{
         _totalCarbs = carbs.GetTotal();
         _totalCal = cal.GetTotal();
     }
-
-    public void CheckDate()
+        public void CheckDay()
     {
-        if (_date != DateOnly.FromDateTime(DateTime.Now))
+        if (_date() != DateOnly.FromDateTime(DateTime.Now))
         {
-         // save function and open instantiate a new DailyTotal
-         Console.WriteLine("New day detected. Creating new DailyTotal");   
+            dailyTotals.Add(_date(),_totals);
         }
     }
+
 }

@@ -1,3 +1,6 @@
+using System.Xml.Serialization;
+
+[Serializable]
 public class Profile {
     private string _profileFilepath;
     private string _name;
@@ -8,16 +11,20 @@ public class Profile {
     private double _activityMult;
     private double _bmr;
     private double _TDEE;
-    private List<DailyTotal> _totals;
 
     public Profile()
     {
-
+        
     }
 
     public string GetFilepath()
     {
         return _profileFilepath;
+    }
+
+    public string GetName()
+    {
+        return _name;
     }
 
     public void SetFilepath()
@@ -50,30 +57,30 @@ public class Profile {
     public void SetProfile() {
         Console.Clear();
         Console.WriteLine("Profile Setup Initiated");
-        Thread.Sleep(3000);
+        Thread.Sleep(1000);
         Console.Clear();
 
         Console.WriteLine("Please enter the following information:");
-        Thread.Sleep(3000);
+        Thread.Sleep(2000);
         Console.Write("Name: ");
         _name = Console.ReadLine();
-        Thread.Sleep(500);
+        Thread.Sleep(250);
         
         Console.Write("Gender (M/F): ");
         _gender = Console.ReadLine().ToUpper();
-        Thread.Sleep(500);
+        Thread.Sleep(250);
 
         Console.Write("Weight (kg): ");
         _weightKg = int.Parse(Console.ReadLine());
-        Thread.Sleep(500);
+        Thread.Sleep(250);
 
         Console.Write("Height (cm): ");
         _heightCm = int.Parse(Console.ReadLine());
-        Thread.Sleep(500);
+        Thread.Sleep(250);
 
         Console.Write("Age: ");
         _age = int.Parse(Console.ReadLine());
-        Thread.Sleep(500);
+        Thread.Sleep(250);
 
         Console.WriteLine($"1 - Sedentary (little to no exercise)");
         Console.WriteLine($"2 - Lightly active (light exercise/sports 1-3 days/week)");
@@ -112,26 +119,30 @@ public class Profile {
 
         Console.Clear();
 
-        // get filepath to save profile
-        Console.Write("Enter a filepath for the profile: ");
-        _profileFilepath = Console.ReadLine();
-        Thread.Sleep(500);
-
-        _totals = new List<DailyTotal>();
-
-        Save();
+        // // get filepath to save profile
+        // Console.Write("Enter a filepath for the profile: ");
+        // _profileFilepath = Console.ReadLine();
+        // Thread.Sleep(500);
 
         Console.WriteLine($"{_name}, your profile has been set up");
 
     }
 
-    public void Save()
+    public void Save(Profile profile, XmlSerializer serializer)
     {
-        // save profile
+        using (TextWriter writer = new StreamWriter($"profiles\\{profile.GetName()}.xml"))
+        {
+            serializer.Serialize(writer, profile);
+        }
     }
 
-    public void Load(string filepath)
+    public void Load(Profile profile, XmlSerializer serializer)
     {
-        // load profile
+        Console.WriteLine("What is the name of the profile you would like to load?");
+        var loadName = Console.ReadLine();
+        using (TextReader reader = new StreamReader($"profiles\\{loadName}.xml"))
+        {
+            profile = (Profile)serializer.Deserialize(reader);
+        }
     }
 }
