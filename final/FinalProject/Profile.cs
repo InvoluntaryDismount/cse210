@@ -2,7 +2,6 @@ using System.Xml.Serialization;
 
 [Serializable]
 public class Profile {
-    private string _profileFilepath;
     private string _name;
     private string _gender;
     private int _weightKg;
@@ -12,11 +11,18 @@ public class Profile {
     private double _bmr;
     private double _TDEE;
     public DailyTotal dt;
-    public List<Tracker> trackers;
+    public Protein protein;
+    public Fats fats;
+    public Carbs carbs;
+    public Cal cal;
 
     public Profile()
     {
-        trackers = new List<Tracker>();
+        dt = new DailyTotal();
+        protein = new Protein();
+        fats = new Fats();
+        carbs = new Carbs();
+        cal = new Cal();
     }
 
     public void SetDT(DailyTotal dailyTotal)
@@ -24,28 +30,17 @@ public class Profile {
         dt = dailyTotal;
     }
     
-    public void SetTrackers(Tracker protein, Tracker fats, Tracker carbs, Tracker cal)
-    {
-        trackers.Add(protein);
-        trackers.Add(fats);
-        trackers.Add(carbs);
-        trackers.Add(cal);
-    }
-
-    public string GetFilepath()
-    {
-        return _profileFilepath;
-    }
+    // public void SetTrackers(Tracker protein, Tracker fats, Tracker carbs, Tracker cal)
+    // {
+    //     trackers.Add(protein);
+    //     trackers.Add(fats);
+    //     trackers.Add(carbs);
+    //     trackers.Add(cal);
+    // }
 
     public string GetName()
     {
         return _name;
-    }
-
-    public void SetFilepath()
-    {
-        Console.WriteLine("What would you like to set the filepath to?");
-        _profileFilepath = Console.ReadLine();
     }
 
     private void CalcBMR() {

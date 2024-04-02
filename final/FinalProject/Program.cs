@@ -9,15 +9,11 @@ class Program
 
         // startup, create active (a) classes
         Profile aProfile = new Profile();
-        DailyTotal currentDT = new DailyTotal();
-        Protein aProtein = new Protein();
-        Carbs aCarbs = new Carbs();
-        Fats aFats = new Fats();
-        Cal aCal = new Cal();
-
-        aProfile.SetDT(currentDT);
-        aProfile.SetTrackers(aProtein, aFats, aCarbs, aCal);
-
+        // DailyTotal currentDT = new DailyTotal();
+        // Protein aProtein = new Protein();
+        // Carbs aCarbs = new Carbs();
+        // Fats aFats = new Fats();
+        // Cal aCal = new Cal();
 
         
 
@@ -119,7 +115,7 @@ class Program
                     
                     Console.WriteLine("What is the name of the profile you would like to load?");
                     var loadName = Console.ReadLine();
-                    using (TextReader reader = new StreamReader($"profiles\\{loadName}.xml"))
+                    using (TextReader reader = new StreamReader($"files\\profiles\\{loadName}.xml"))
                     {
                         aProfile = (Profile)serializer.Deserialize(reader);
                     }
@@ -129,23 +125,42 @@ class Program
                 case 4:
                     Console.WriteLine("Save Profile");
 
-                    using (TextWriter writer = new StreamWriter($"profiles\\{aProfile.GetName()}.xml"))
+                    //serialize profile
+                    using (TextWriter writer = new StreamWriter($"files\\profiles\\{aProfile.GetName()}.xml"))
                     {
                         serializer.Serialize(writer, aProfile);
                     }
                     
-                    using (TextWriter writer = new StreamWriter($"dailyTotal\\{aProfile.GetName()}.xml"))
+                    //serialize daily total
+                    using (TextWriter writer = new StreamWriter($"files\\dailyTotal\\{aProfile.GetName()}.xml"))
                     {
                         serializer.Serialize(writer, aProfile.dt);
                     }
 
-                    foreach (Tracker t in aProfile.trackers)
-                    {
-                        using (TextWriter writer = new StreamWriter($"{t.GetName()}\\{aProfile.GetName()}.xml"))
-                        {
-                            serializer.Serialize(writer, t);
-                        }
+                    //serialize trackers
 
+                    //protein
+                    using (TextWriter writer = new StreamWriter($"files\\protein\\{aProfile.GetName()}.xml"))
+                    {
+                        serializer.Serialize(writer, aProtein);
+                    }
+
+                    //fats
+                    using (TextWriter writer = new StreamWriter($"files\\protein\\{aProfile.GetName()}.xml"))
+                    {
+                        serializer.Serialize(writer, aFats);
+                    }
+
+                    //carbs
+                    using (TextWriter writer = new StreamWriter($"files\\protein\\{aProfile.GetName()}.xml"))
+                    {
+                        serializer.Serialize(writer, aCarbs);
+                    }
+                    
+                    //cal
+                    using (TextWriter writer = new StreamWriter($"files\\protein\\{aProfile.GetName()}.xml"))
+                    {
+                        serializer.Serialize(writer, aCal);
                     }
 
 

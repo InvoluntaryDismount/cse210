@@ -3,7 +3,7 @@ public class Cal : Tracker {
 
         public Cal()
     {
-        _name = "Cal";
+        _name = "cal";
     }
     public override double CalcMacroGoal(double tdee) {
         return tdee;
