@@ -19,7 +19,7 @@ public abstract class Tracker {
     }
 
     public string GetName() {
-        return _name;
+        return _type;
     }
 
     public int GetTotal() {
@@ -39,7 +39,7 @@ public abstract class Tracker {
     }
 
     public void DisplayTotal() {
-        Console.WriteLine($"You have consumed {_total}g of {_name}");
+        Console.WriteLine($"You have consumed {_total}g of {_type}");
     }
 
     public abstract double CalcMacroGoal(double tdee);

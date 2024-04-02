@@ -14,5 +14,6 @@ public class Cal : Tracker {
         _total = _total + input;
         if (_total >= _goal) {
             Console.WriteLine($"Congratulations! You hit your goal of {_goal}");
+        }
     }
 }
