@@ -9,11 +9,11 @@ class Program
 
         // startup, create active (a) classes
         Profile aProfile = new Profile();
-        // DailyTotal currentDT = new DailyTotal();
-        // Protein aProtein = new Protein();
-        // Carbs aCarbs = new Carbs();
-        // Fats aFats = new Fats();
-        // Cal aCal = new Cal();
+        DailyTotal currentDT = new DailyTotal();
+        Protein aProtein = new Protein();
+        Carbs aCarbs = new Carbs();
+        Fats aFats = new Fats();
+        Cal aCal = new Cal();
 
         
 
@@ -130,40 +130,6 @@ class Program
                     {
                         serializer.Serialize(writer, aProfile);
                     }
-                    
-                    //serialize daily total
-                    using (TextWriter writer = new StreamWriter($"files\\dailyTotal\\{aProfile.GetName()}.xml"))
-                    {
-                        serializer.Serialize(writer, aProfile.dt);
-                    }
-
-                    //serialize trackers
-
-                    //protein
-                    using (TextWriter writer = new StreamWriter($"files\\protein\\{aProfile.GetName()}.xml"))
-                    {
-                        serializer.Serialize(writer, aProtein);
-                    }
-
-                    //fats
-                    using (TextWriter writer = new StreamWriter($"files\\protein\\{aProfile.GetName()}.xml"))
-                    {
-                        serializer.Serialize(writer, aFats);
-                    }
-
-                    //carbs
-                    using (TextWriter writer = new StreamWriter($"files\\protein\\{aProfile.GetName()}.xml"))
-                    {
-                        serializer.Serialize(writer, aCarbs);
-                    }
-                    
-                    //cal
-                    using (TextWriter writer = new StreamWriter($"files\\protein\\{aProfile.GetName()}.xml"))
-                    {
-                        serializer.Serialize(writer, aCal);
-                    }
-
-
 
                     break;
                 
