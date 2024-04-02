@@ -7,6 +7,7 @@ public abstract class Tracker {
     public Tracker()
     {
         _total = 0;
+        _goal = 1000;
     }
 
     public virtual void UpdateTotal() {
