@@ -3,7 +3,7 @@ public class Fats : Tracker {
 
         public Fats()
     {
-        _name = "fats";
+        _type = "fats";
     }
     public override double CalcMacroGoal(double tdee) {
         return tdee * 0.3 / 9;

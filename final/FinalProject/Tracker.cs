@@ -1,10 +1,8 @@
 [Serializable]
 public abstract class Tracker {
-    protected string _name;
+    protected string _type;
     protected int _total;
-    protected int _input;
     protected int _goal;
-    protected DateOnly _inputDate;
 
     public Tracker()
     {
@@ -12,10 +10,12 @@ public abstract class Tracker {
     }
 
     public virtual void UpdateTotal() {
-        Console.Write($"How much would you like to add to {_name}(g)? ");
-        _input = int.Parse(Console.ReadLine());
-        _inputDate = DateOnly.FromDateTime(DateTime.Now);
-        _total = _total + _input;
+        Console.Write($"How much would you like to add to {_type}(g)? ");
+        var input = int.Parse(Console.ReadLine());
+        _total = _total + input;
+        if (_total >= _goal) {
+            Console.WriteLine($"Congratulations! You hit your goal of {_goal}");
+        }
     }
 
     public string GetName() {
