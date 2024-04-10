@@ -44,8 +44,4 @@ public abstract class Tracker {
     }
 
     public abstract double CalcMacroGoal(double tdee);
-    public void ResetTotal()
-    {
-        _total = 0;
-    }
 }
