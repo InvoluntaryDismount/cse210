@@ -10,11 +10,19 @@ class Program
 
         // startup, create active (a) classes
         Profile aProfile = new Profile();
+
         DailyTotal currentDT = new DailyTotal();
+        
         Protein aProtein = new Protein();
         Carbs aCarbs = new Carbs();
         Fats aFats = new Fats();
         Cal aCal = new Cal();
+
+        currentDT.trackers.Add(aProtein);
+        currentDT.trackers.Add(aCarbs);
+        currentDT.trackers.Add(aFats);
+        currentDT.trackers.Add(aCal);
+
 
 
         bool run = true;
@@ -28,7 +36,8 @@ class Program
             Console.WriteLine("2 - Create Profile");
             Console.WriteLine("3 - Load Profile");
             Console.WriteLine("4 - Save Profile");
-            Console.WriteLine("5 - Quit");
+            Console.WriteLine("5 - View Summary");
+            Console.WriteLine("6 - Quit");
 
             Console.WriteLine("Enter a numeric option:");
             int option = int.Parse(Console.ReadLine());
@@ -102,6 +111,9 @@ class Program
                     Profile newProfile = new Profile();
                     newProfile.SetProfile();
                     aProfile = newProfile;
+
+                    aProfile.DisplayBmrTDEE();
+                    Thread.Sleep(10000);
                     break;
 
                 case 3:
@@ -134,6 +146,10 @@ class Program
                     break;
                 
                 case 5:
+                    // for each display method
+                    break;
+
+                case 6:
                     Console.WriteLine("Quitting...");
                     Thread.Sleep(1500);
                     Console.Clear();

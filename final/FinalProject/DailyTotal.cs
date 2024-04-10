@@ -3,6 +3,7 @@ public class DailyTotal{
 
     private DateOnly _date;
     private List<int> _totals = new List<int>(4);
+    public List<Tracker> trackers = new List<Tracker>();
     public const int proteinIndex = 0;
     public const int fatsIndex = 1;
     public const int carbsIndex = 2;

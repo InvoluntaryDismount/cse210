@@ -18,5 +18,13 @@ M
 21
 3
 
+Ethan
+M
+79.337
+178
+16
+4
+
+BMR: 1914.6297890000005, TDEE: 3302.736386025001
 
 create a dictionary entry that has the total for each 

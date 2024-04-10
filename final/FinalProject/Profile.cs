@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 public class Profile {
     public string _name;
     public string _gender;
-    public int _weightKg;
+    public double _weightKg;
     public int _heightCm;
     public int _age;
     public double _activityMult;
@@ -81,7 +81,7 @@ public class Profile {
         Thread.Sleep(250);
 
         Console.Write("Weight (kg): ");
-        _weightKg = int.Parse(Console.ReadLine());
+        _weightKg = double.Parse(Console.ReadLine());
         Thread.Sleep(250);
 
         Console.Write("Height (cm): ");
@@ -154,5 +154,9 @@ public class Profile {
         {
             profile = (Profile)serializer.Deserialize(reader);
         }
+    }
+
+    public void DisplayBmrTDEE() {
+        Console.WriteLine($"BMR: {_bmr}, TDEE: {_TDEE}");
     }
 }
