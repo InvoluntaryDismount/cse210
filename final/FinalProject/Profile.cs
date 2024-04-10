@@ -16,6 +16,7 @@ public class Profile {
         return _name;
     }
 
+
     private void CalcBMR() {
         if (_gender=="M") {
             _bmr = (int)Math.Round(88.362 + (13.397 * _weightKg) + (4.799 * _heightCm) - (5.677 * _age));
@@ -25,17 +26,21 @@ public class Profile {
         }
     }
 
+
     public double GetBmr() {
         return _bmr;
     }
+
 
     private void CalcTDEE() {
         _TDEE = Math.Round(_bmr * _activityMult);
     }
 
+
     public double GetTDEE() {
         return _TDEE;
     }
+
 
     public void SetProfile() {
         Console.Clear();
@@ -109,6 +114,7 @@ public class Profile {
 
     }
 
+
     public void SaveProfile()
     {
         string filePath = "saveFolder\\userProfile.csv";
@@ -119,6 +125,7 @@ public class Profile {
         Console.WriteLine("Profile successfully saved");
 
     }
+
 
     public void LoadProfile()
     {
@@ -154,7 +161,9 @@ public class Profile {
         // Thread.Sleep(5000);
     }
 
-    public void DisplayBmrTDEE() {
+
+    public void DisplayBmrTDEE()
+    {
         Console.WriteLine($"BMR: {_bmr}, TDEE: {_TDEE}");
     }
 }

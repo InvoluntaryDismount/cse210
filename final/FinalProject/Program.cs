@@ -31,6 +31,7 @@ class Program
         if (File.Exists("saveFolder\\userProfile.csv"))
         {
             aProfile.LoadProfile();
+            currentDT.LoadDT();
             Console.WriteLine($"Welcome back {aProfile.GetName()}");
             Thread.Sleep(2000);
             Console.Clear();

@@ -20,14 +20,18 @@ public class DailyTotal{
 
     }
 
+
     public DateOnly GetDate()
     {
         return _date;
     }
+
+
     public void SetDate(DateOnly date)
     {
         _date = date;
     }
+
 
     public void UpdateTotals()
     {
@@ -37,6 +41,7 @@ public class DailyTotal{
         }        
     }
 
+
     public void CheckDtTotals()
     {
         foreach (int n in _totals)
@@ -44,10 +49,13 @@ public class DailyTotal{
             Console.WriteLine(n);
         }
     }
+
+
     public void TotalsDictUpdate()
     {
         _dailyTotals[_date] = _totals;
     }
+
 
         public void CheckDay()
     {
@@ -64,6 +72,8 @@ public class DailyTotal{
             }
         }
     }
+
+
     public void SaveDT()
     {
         TotalsDictUpdate();
@@ -76,12 +86,11 @@ public class DailyTotal{
                 string dtString = $"{kvp.Key}|{kvp.Value[0]}|{kvp.Value[1]}|{kvp.Value[2]}|{kvp.Value[3]}\n";
                 writer.Write(dtString);
             }
-
-            Console.WriteLine("DailyTotal successfully saved");
-
         }
 
     }
+
+    
     public void LoadDT()
     {
         string filePath = "saveFolder\\userDT.csv";
@@ -92,25 +101,44 @@ public class DailyTotal{
             Console.WriteLine("The CSV file does not exist.");
             return;
         }
-
-        // Read and process the CSV file
-        using (StreamReader reader = new StreamReader(filePath))
+        else
         {
-            // Read current line
-            string line = reader.ReadLine();
-            
-            // Split the line into parts
-            string[] parts = line.Split('|');
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] fields = line.Split('|');
 
-            // _name = parts[0];
-            // _gender = parts[1];
+                    // load fields into _dailyTotals dictionary
+                    string d = fields[0].ToString();
+                    DateOnly date = DateOnly.ParseExact(d, "M/d/yyyy", null);
+
+                    string p = fields[1].ToString();
+                    int protein = int.Parse(p);
+
+                    string f = fields[2].ToString();
+                    int fats = int.Parse(f);
+
+                    string car = fields[3].ToString();
+                    int carbs = int.Parse(car);
+
+                    string cal = fields[4].ToString();
+                    int kcal = int.Parse(cal);
+
+                    _dailyTotals[date] = new List<int>{protein,fats,carbs,kcal};
+                }
+            }
+
+            // update daily totals to be the dictionary values from today
+            _totals = _dailyTotals[DateOnly.FromDateTime(DateTime.Now)];
+            
+            // update trackers to be accurate
+            for (int i = 0; i < 4; i++)
+            {
+                trackers[i].SetTotal(_totals[i]);
+            }
 
         }
-
-
-
-        // read in from csv
-        // check dailyTotals for value at current date and if so grab list of totals
-        // set tracker totals to what is in the list
     }
 }

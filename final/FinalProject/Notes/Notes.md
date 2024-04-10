@@ -1,9 +1,8 @@
 TO DO:
 
+    update trackers after load
 
-    4 ints with set index in the list. One for each tracker.
-
-    Save/Load dt to csv
+    complete CalcMacroGoal function in Tracker
 
     Write setGoal functions for each tracker subclass. 
     """
@@ -12,7 +11,6 @@ TO DO:
 
     """
 
-    complete CalcMacroGoal function in Tracker
 
 
 Notes:
@@ -35,6 +33,9 @@ M
 4
 
     private DateOnly _date;
+    
     private List<int> _totals = new List<int>(4);
+
     public List<Tracker> trackers = new List<Tracker>();
+
     private Dictionary<DateOnly, List<int>> _dailyTotals = new Dictionary<DateOnly, List<int>>();
