@@ -52,10 +52,10 @@ public class DailyTotal{
             _totals = new List<int> {0,0,0,0};
 
             // reset trackers
-            Protein aProtein = new Protein();
-            Carbs aCarbs = new Carbs();
-            Fats aFats = new Fats();
-            Cal aCal = new Cal();
+            foreach (Tracker t in trackers)
+            {
+                t.SetTotal(0);
+            }
         }
     }
     public void SaveDT(DailyTotal dt)
