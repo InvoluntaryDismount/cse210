@@ -7,7 +7,6 @@ public abstract class Tracker {
     public Tracker()
     {
         _total = 0;
-        _goal = 1000;
     }
 
     public virtual void UpdateTotal() {
@@ -15,7 +14,7 @@ public abstract class Tracker {
         var input = int.Parse(Console.ReadLine());
         _total = _total + input;
         if (_total >= _goal) {
-            Console.WriteLine($"Congratulations! You hit your goal of {_goal}");
+            Console.WriteLine($"Congratulations! You hit your recommended goal of {_goal} {_type}!");
         }
     }
 
@@ -42,6 +41,4 @@ public abstract class Tracker {
     public virtual void DisplayTotal() {
         Console.WriteLine($"You have consumed {_total}g out of {_goal}g target {_type}");
     }
-
-    public abstract double CalcMacroGoal(double tdee);
 }

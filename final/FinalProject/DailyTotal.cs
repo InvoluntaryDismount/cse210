@@ -6,10 +6,6 @@ public class DailyTotal{
     private DateOnly _date;
     private List<int> _totals = new List<int>(4);
     public List<Tracker> trackers = new List<Tracker>();
-    public const int proteinIndex = 0;
-    public const int fatsIndex = 1;
-    public const int carbsIndex = 2;
-    public const int calIndex = 3;
     private Dictionary<DateOnly, List<int>> _dailyTotals = new Dictionary<DateOnly, List<int>>();
     
 
@@ -18,18 +14,6 @@ public class DailyTotal{
         _date = DateOnly.FromDateTime(DateTime.Now);
         _totals = new List<int> {0,0,0,0};
 
-    }
-
-
-    public DateOnly GetDate()
-    {
-        return _date;
-    }
-
-
-    public void SetDate(DateOnly date)
-    {
-        _date = date;
     }
 
 
@@ -42,15 +26,6 @@ public class DailyTotal{
     }
 
 
-    public void CheckDtTotals()
-    {
-        foreach (int n in _totals)
-        {
-            Console.WriteLine(n);
-        }
-    }
-
-
     public void TotalsDictUpdate()
     {
         _dailyTotals[_date] = _totals;
@@ -59,8 +34,10 @@ public class DailyTotal{
 
         public void CheckDay()
     {
-        if (_date != DateOnly.FromDateTime(DateTime.Now))
+        // check if date has already been used as key in dictionary
+        if (!_dailyTotals.ContainsKey(DateOnly.FromDateTime(DateTime.Now)))
         {
+            // create new values if none exist
             TotalsDictUpdate();
             _date = DateOnly.FromDateTime(DateTime.Now);
             _totals = new List<int> {0,0,0,0};
@@ -69,6 +46,17 @@ public class DailyTotal{
             foreach (Tracker t in trackers)
             {
                 t.SetTotal(0);
+            }
+        }
+        else
+        {
+            // if date is present update today with values from saved date
+            _totals = _dailyTotals[DateOnly.FromDateTime(DateTime.Now)];
+            
+            // update trackers to be accurate
+            for (int i = 0; i < 4; i++)
+            {
+                trackers[i].SetTotal(_totals[i]);
             }
         }
     }
@@ -130,14 +118,7 @@ public class DailyTotal{
                 }
             }
 
-            // update daily totals to be the dictionary values from today
-            _totals = _dailyTotals[DateOnly.FromDateTime(DateTime.Now)];
-            
-            // update trackers to be accurate
-            for (int i = 0; i < 4; i++)
-            {
-                trackers[i].SetTotal(_totals[i]);
-            }
+            CheckDay();
 
         }
     }

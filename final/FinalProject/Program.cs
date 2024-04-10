@@ -10,7 +10,6 @@ class Program
 
         // startup, create active (a) classes
         Profile aProfile = new Profile();
-
         DailyTotal currentDT = new DailyTotal();
         
         Protein aProtein = new Protein();
@@ -20,10 +19,9 @@ class Program
 
         // add trackers to dt list
         currentDT.trackers.Add(aProtein);
-        currentDT.trackers.Add(aCarbs);
         currentDT.trackers.Add(aFats);
+        currentDT.trackers.Add(aCarbs);
         currentDT.trackers.Add(aCal);
-
 
         // welcome section
 
@@ -32,12 +30,17 @@ class Program
         {
             aProfile.LoadProfile();
             currentDT.LoadDT();
-            Console.WriteLine($"Welcome back {aProfile.GetName()}");
-            Thread.Sleep(2000);
-            Console.Clear();
-            Thread.Sleep(500);  
+            // set default goals
+            aProtein.SetDefaultGoal(aProfile.GetTDEE());
+            aFats.SetDefaultGoal(aProfile.GetTDEE());
+            aCarbs.SetDefaultGoal(aProfile.GetTDEE());
+            aCal.SetDefaultGoal(aProfile.GetTDEE());
 
-            // maybe put currentDT.CheckDay() if not implemented on load. Probably gonna put it on load
+
+
+            Console.WriteLine($"Welcome back {aProfile.GetName()}");
+            Thread.Sleep(1500);
+            Console.Clear();  
         }
         else
         {
@@ -54,6 +57,12 @@ class Program
             Console.Clear();
 
             aProfile.SetProfile();
+
+            // set default goals
+            aProtein.SetDefaultGoal(aProfile.GetTDEE());
+            aFats.SetDefaultGoal(aProfile.GetTDEE());
+            aCarbs.SetDefaultGoal(aProfile.GetTDEE());
+            aCal.SetDefaultGoal(aProfile.GetTDEE());
         }
 
         bool run = true;
@@ -100,7 +109,8 @@ class Program
 
                             aProtein.UpdateTotal();
                             aProtein.DisplayTotal();
-                            Thread.Sleep(2000);
+                            Console.WriteLine("Enter to continue");
+                            Console.ReadLine();
 
                             break;
 
@@ -111,7 +121,8 @@ class Program
                             
                             aFats.UpdateTotal();
                             aFats.DisplayTotal();
-                            Thread.Sleep(2000);
+                            Console.WriteLine("Enter to continue");
+                            Console.ReadLine();
                             break;
 
                         case "3":
@@ -121,7 +132,8 @@ class Program
 
                             aCarbs.UpdateTotal();
                             aCarbs.DisplayTotal();
-                            Thread.Sleep(2000);
+                            Console.WriteLine("Enter to continue");
+                            Console.ReadLine();
                             break;
 
                         case "4":
@@ -131,7 +143,8 @@ class Program
 
                             aCal.UpdateTotal();
                             aCal.DisplayTotal();
-                            Thread.Sleep(2000);
+                            Console.WriteLine("Enter to continue");
+                            Console.ReadLine();
                             break;
                     }
                     currentDT.UpdateTotals();
@@ -139,14 +152,15 @@ class Program
                     break;
 
                 case 2:
-                    Console.WriteLine("Create Profile");
+                    Console.WriteLine("Update Profile");
+                    aProfile.SetProfile();
 
-                    Profile newProfile = new Profile();
-                    newProfile.SetProfile();
-                    aProfile = newProfile;
+                    // set default goals
+                    aProtein.SetDefaultGoal(aProfile.GetTDEE());
+                    aFats.SetDefaultGoal(aProfile.GetTDEE());
+                    aCarbs.SetDefaultGoal(aProfile.GetTDEE());
+                    aCal.SetDefaultGoal(aProfile.GetTDEE());
 
-                    aProfile.DisplayBmrTDEE();
-                    Thread.Sleep(10000);
                     break;
 
                 
@@ -156,12 +170,13 @@ class Program
                     {
                         t.DisplayTotal();
                     }
-                    Thread.Sleep(5000);
+                    Console.WriteLine("Enter to continue");
+                    Console.ReadLine();
                     break;
 
                 case 4:
                     Console.WriteLine("Quitting...");
-                    Thread.Sleep(1500);
+                    Thread.Sleep(1000);
                     Console.Clear();
                     run = false;
                     break;

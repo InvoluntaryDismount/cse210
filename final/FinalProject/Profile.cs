@@ -2,14 +2,14 @@ using System.Xml.Serialization;
 
 [Serializable]
 public class Profile {
-    public string _name;
-    public string _gender;
-    public double _weightKg;
-    public int _heightCm;
-    public int _age;
-    public double _activityMult;
-    public double _bmr;
-    public double _TDEE;
+    private string _name;
+    private string _gender;
+    private double _weightKg;
+    private int _heightCm;
+    private int _age;
+    private double _activityMult;
+    private double _bmr;
+    private double _TDEE;
 
     public string GetName()
     {
@@ -120,7 +120,13 @@ public class Profile {
         string filePath = "saveFolder\\userProfile.csv";
         string profileString = $"{_name},{_gender},{_weightKg},{_heightCm},{_age},{_activityMult},{_bmr},{_TDEE}";
         
-        File.WriteAllText(filePath,profileString);
+        // File.WriteAllText(filePath,profileString);
+            using (StreamWriter writer = new StreamWriter(filePath, false))
+        {
+
+                writer.Write(profileString);
+            
+        }
         
         Console.WriteLine("Profile successfully saved");
 
