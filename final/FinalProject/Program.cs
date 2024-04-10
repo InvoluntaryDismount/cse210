@@ -34,7 +34,9 @@ class Program
             Console.WriteLine($"Welcome back {aProfile.GetName()}");
             Thread.Sleep(2000);
             Console.Clear();
-            Thread.Sleep(500);   
+            Thread.Sleep(500);  
+
+            // maybe put currentDT.CheckDay() if not implemented on load. Probably gonna put it on load
         }
         else
         {

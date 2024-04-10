@@ -64,13 +64,49 @@ public class DailyTotal{
     }
     public void SaveDT()
     {
-        // save to csv
+        string filePath = "saveFolder\\userDT.csv";
+        // overrite old data
+        File.Create(filePath);
+        
+        foreach(var kvp in _dailyTotals)
+        {
+        string dtString = $"{kvp.Key}|{kvp.Value}\n";
+
+        File.AppendAllText(dtString, filePath);
+        }
+
+        Console.WriteLine("DailyTotal successfully saved");
+
     }
     public void LoadDT()
     {
+        string filePath = "saveFolder\\userDT.csv";
+
+        // Check if the file exists
+        if (!File.Exists(filePath))
+        {
+            Console.WriteLine("The CSV file does not exist.");
+            return;
+        }
+
+        // Read and process the CSV file
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            // Read current line
+            string line = reader.ReadLine();
+            
+            // Split the line into parts
+            string[] parts = line.Split('|');
+
+            // _name = parts[0];
+            // _gender = parts[1];
+
+        }
+
+
+
         // read in from csv
         // check dailyTotals for value at current date and if so grab list of totals
         // set tracker totals to what is in the list
     }
-
 }

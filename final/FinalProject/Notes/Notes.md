@@ -1,10 +1,5 @@
 TO DO:
 
-    Create a reset function on the tracker class
-
-    Have dt have a dictinary that looks like this:
-
-    date:list<int>
 
     4 ints with set index in the list. One for each tracker.
 
@@ -38,3 +33,8 @@ M
 178
 16
 4
+
+    private DateOnly _date;
+    private List<int> _totals = new List<int>(4);
+    public List<Tracker> trackers = new List<Tracker>();
+    private Dictionary<DateOnly, List<int>> _dailyTotals = new Dictionary<DateOnly, List<int>>();
