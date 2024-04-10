@@ -1,12 +1,26 @@
+TO DO:
+
+    Create a reset function on the tracker class
+
+    Have dt have a dictinary that looks like this:
+
+    date:list<int>
+
+    4 ints with set index in the list. One for each tracker.
+
+    Save/Load dt to csv
+
+    Write setGoal functions for each tracker subclass. 
+    """
+    It is recommended you consume ... of ...
+    What would you like your goal to be?
+
+    """
+
+    complete CalcMacroGoal function in Tracker
+
+
 Notes:
-
-
-save profile at the end of the SetUp() function in the Profile class
-
-Save/Load function is now a part of the Profile class
-
-instantiate every sub tracker class with default total of 0
-
 
 figure out how to add trackers to dailytotal and dailytotal to profile
 
@@ -24,7 +38,3 @@ M
 178
 16
 4
-
-BMR: 1914.6297890000005, TDEE: 3302.736386025001
-
-create a dictionary entry that has the total for each 

@@ -29,12 +29,20 @@ public class DailyTotal{
 
     public void UpdateTotals()
     {
-        for (int i = 1; i < 5; i++)
+        for (int i = 0; i < 4; i++)
         {
             _totals[i] = trackers[i].GetTotal();
-        }
-        
+        }        
     }
+
+    public void CheckDtTotals()
+    {
+        foreach (int n in _totals)
+        {
+            Console.WriteLine(n);
+        }
+    }
+
         public void CheckDay()
     {
         if (_date != DateOnly.FromDateTime(DateTime.Now))
@@ -49,6 +57,10 @@ public class DailyTotal{
             Fats aFats = new Fats();
             Cal aCal = new Cal();
         }
+    }
+    public void SaveDT(DailyTotal dt)
+    {
+
     }
 
 }

@@ -18,26 +18,55 @@ class Program
         Fats aFats = new Fats();
         Cal aCal = new Cal();
 
+        // add trackers to dt list
         currentDT.trackers.Add(aProtein);
         currentDT.trackers.Add(aCarbs);
         currentDT.trackers.Add(aFats);
         currentDT.trackers.Add(aCal);
 
 
+        // welcome section
+
+        Console.Clear();
+        if (File.Exists("saveFolder\\userProfile.csv"))
+        {
+            aProfile.LoadProfile();
+            Console.WriteLine($"Welcome back {aProfile.GetName()}");
+            Thread.Sleep(2000);
+            Console.Clear();
+            Thread.Sleep(500);   
+        }
+        else
+        {
+            Console.WriteLine("Welcome to the daily macro tracker!");
+            Thread.Sleep(2500);
+            Console.Clear();
+
+            Console.WriteLine("It looks like we do not have a profile set up for you.");
+            Thread.Sleep(3000);
+            Console.Clear();
+
+            Console.WriteLine("Lets set one up now!");
+            Thread.Sleep(2500);
+            Console.Clear();
+
+            aProfile.SetProfile();
+        }
 
         bool run = true;
         while(run)
         {
 
+        // main program logic
+
+            // go into updating macro logic / update profile option / quit
             Console.Clear();
             // Prompt the user to enter a numeric option
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1 - Update Macro");
-            Console.WriteLine("2 - Create Profile");
-            Console.WriteLine("3 - Load Profile");
-            Console.WriteLine("4 - Save Profile");
-            Console.WriteLine("5 - View Summary");
-            Console.WriteLine("6 - Quit");
+            Console.WriteLine("2 - Update Profile");
+            Console.WriteLine("3 - View Summary");
+            Console.WriteLine("4 - Quit");
 
             Console.WriteLine("Enter a numeric option:");
             int option = int.Parse(Console.ReadLine());
@@ -55,7 +84,7 @@ class Program
                     Console.WriteLine("1 - Protein");
                     Console.WriteLine("2 - Fats");
                     Console.WriteLine("3 - Carbs");
-                    Console.WriteLine("4 - Cal");
+                    Console.WriteLine("4 - Kcal");
                     var choice = Console.ReadLine();
                     Console.Clear();
 
@@ -93,7 +122,7 @@ class Program
                             break;
 
                         case "4":
-                            Console.WriteLine("Selected Cal");
+                            Console.WriteLine("Selected Kcal");
                             Thread.Sleep(1000);
                             Console.Clear();
 
@@ -102,7 +131,7 @@ class Program
                             Thread.Sleep(2000);
                             break;
                     }
-                    currentDT.UpdateTotals(aProtein, aFats, aCarbs, aCal);
+                    currentDT.UpdateTotals();
                     break;
 
                 case 2:
@@ -116,40 +145,17 @@ class Program
                     Thread.Sleep(10000);
                     break;
 
+                
                 case 3:
-                    Console.WriteLine("Load Profile");
-                    
-                    Console.WriteLine("What is the name of the profile you would like to load?");
-                    var loadName = Console.ReadLine();
-
-                    string rjson = File.ReadAllText($"files\\profiles\\{loadName}.json");
-                    aProfile = JsonSerializer.Deserialize<Profile>(rjson);
-
-
+                    // for each display method
+                    foreach (Tracker t in currentDT.trackers)
+                    {
+                        t.DisplayTotal();
+                    }
+                    Thread.Sleep(5000);
                     break;
 
                 case 4:
-                    Console.WriteLine("Save Profile");
-
-                    //serialize profile
-
-                    Console.WriteLine(JsonSerializer.Serialize(aProfile));
-                    Thread.Sleep(5000);
-                    string json = JsonSerializer.Serialize(aProfile);
-                    Console.WriteLine(json);
-                    Thread.Sleep(5000);
-                    File.WriteAllText($"files\\profiles\\{aProfile.GetName()}.json", json);
-                    
-                    Console.WriteLine("Save successful");
-                    Thread.Sleep(750);
-
-                    break;
-                
-                case 5:
-                    // for each display method
-                    break;
-
-                case 6:
                     Console.WriteLine("Quitting...");
                     Thread.Sleep(1500);
                     Console.Clear();
@@ -160,7 +166,7 @@ class Program
                     Console.WriteLine("Invalid option");
                     break;
             }
-        }
 
+        }
     }
 }

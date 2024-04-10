@@ -10,33 +10,6 @@ public class Profile {
     public double _activityMult;
     public double _bmr;
     public double _TDEE;
-    // public DailyTotal dt;
-    // public Protein protein;
-    // public Fats fats;
-    // public Carbs carbs;
-    // public Cal cal;
-
-    // public Profile()
-    // {
-    //     dt = new DailyTotal();
-    //     protein = new Protein();
-    //     fats = new Fats();
-    //     carbs = new Carbs();
-    //     cal = new Cal();
-    // }
-
-    // public void SetDT(DailyTotal dailyTotal)
-    // {
-    //     dt = dailyTotal;
-    // }
-    
-    // public void SetTrackers(Tracker protein, Tracker fats, Tracker carbs, Tracker cal)
-    // {
-    //     trackers.Add(protein);
-    //     trackers.Add(fats);
-    //     trackers.Add(carbs);
-    //     trackers.Add(cal);
-    // }
 
     public string GetName()
     {
@@ -45,10 +18,10 @@ public class Profile {
 
     private void CalcBMR() {
         if (_gender=="M") {
-            _bmr = 88.362 + (13.397 * _weightKg) + (4.799 * _heightCm) - (5.677 * _age);
+            _bmr = (int)Math.Round(88.362 + (13.397 * _weightKg) + (4.799 * _heightCm) - (5.677 * _age));
         }
         else {
-            _bmr = 447.593 + (9.247 * _weightKg) + (3.098 * _heightCm) - (4.330 * _age);
+            _bmr = (int)Math.Round(447.593 + (9.247 * _weightKg) + (3.098 * _heightCm) - (4.330 * _age));
         }
     }
 
@@ -57,7 +30,7 @@ public class Profile {
     }
 
     private void CalcTDEE() {
-        _TDEE = _bmr * _activityMult;
+        _TDEE = Math.Round(_bmr * _activityMult);
     }
 
     public double GetTDEE() {
@@ -129,31 +102,56 @@ public class Profile {
 
         Console.Clear();
 
-        // // get filepath to save profile
-        // Console.Write("Enter a filepath for the profile: ");
-        // _profileFilepath = Console.ReadLine();
-        // Thread.Sleep(500);
+        // save to profile text file
+        SaveProfile();
 
         Console.WriteLine($"{_name}, your profile has been set up");
 
     }
 
-    public void Save(Profile profile, XmlSerializer serializer)
+    public void SaveProfile()
     {
-        using (TextWriter writer = new StreamWriter($"profiles\\{profile.GetName()}.xml"))
-        {
-            serializer.Serialize(writer, profile);
-        }
+        string filePath = "saveFolder\\userProfile.csv";
+        string profileString = $"{_name},{_gender},{_weightKg},{_heightCm},{_age},{_activityMult},{_bmr},{_TDEE}";
+        
+        File.WriteAllText(filePath,profileString);
+        
+        Console.WriteLine("Profile successfully saved");
+
     }
 
-    public void Load(Profile profile, XmlSerializer serializer)
+    public void LoadProfile()
     {
-        Console.WriteLine("What is the name of the profile you would like to load?");
-        var loadName = Console.ReadLine();
-        using (TextReader reader = new StreamReader($"profiles\\{loadName}.xml"))
+        string filePath = "saveFolder\\userProfile.csv";
+
+        // Check if the file exists
+        if (!File.Exists(filePath))
         {
-            profile = (Profile)serializer.Deserialize(reader);
+            Console.WriteLine("The CSV file does not exist.");
+            return;
         }
+
+        // Read and process the CSV file
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            // Read current line
+            string line = reader.ReadLine();
+            
+            // Split the line into parts
+            string[] parts = line.Split(',');
+
+            _name = parts[0];
+            _gender = parts[1];
+            _weightKg = Convert.ToDouble(parts[2]);
+            _heightCm = Convert.ToInt32(parts[3]);
+            _age = Convert.ToInt32(parts[4]);
+            _activityMult = Convert.ToDouble(parts[5]);
+            _bmr = Convert.ToDouble(parts[6]);
+            _TDEE = Convert.ToDouble(parts[7]);
+        }
+        // check values
+        // Console.WriteLine($"Name: {_name}, Gender: {_gender}, Weight: {_weightKg}, Height: {_heightCm}, Age: {_age}, Activity Multiplier: {_activityMult}, BMR: {_bmr}, TDEE: {_TDEE}");
+        // Thread.Sleep(5000);
     }
 
     public void DisplayBmrTDEE() {

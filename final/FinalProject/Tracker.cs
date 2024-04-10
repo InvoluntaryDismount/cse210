@@ -39,10 +39,13 @@ public abstract class Tracker {
         _goal = goal;
     }
 
-    public void DisplayTotal() {
-        Console.WriteLine($"You have consumed {_total}g of {_type}");
+    public virtual void DisplayTotal() {
+        Console.WriteLine($"You have consumed {_total}g out of {_goal}g target {_type}");
     }
 
     public abstract double CalcMacroGoal(double tdee);
-
+    public void ResetTotal()
+    {
+        _total = 0;
+    }
 }
