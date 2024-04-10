@@ -27,12 +27,13 @@ public class DailyTotal{
         _date = date;
     }
 
-    public void UpdateTotals(Tracker protein, Tracker fats, Tracker carbs, Tracker cal)
+    public void UpdateTotals()
     {
-        _totals[proteinIndex] = protein.GetTotal();
-        _totals[fatsIndex] = fats.GetTotal();
-        _totals[carbsIndex] = carbs.GetTotal();
-        _totals[calIndex] = cal.GetTotal();
+        for (int i = 1; i < 5; i++)
+        {
+            _totals[i] = trackers[i].GetTotal();
+        }
+        
     }
         public void CheckDay()
     {
