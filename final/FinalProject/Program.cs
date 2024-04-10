@@ -134,6 +134,7 @@ class Program
                             break;
                     }
                     currentDT.UpdateTotals();
+                    currentDT.SaveDT();
                     break;
 
                 case 2:

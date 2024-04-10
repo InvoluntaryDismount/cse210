@@ -1,3 +1,5 @@
+using System.Text;
+
 [Serializable]
 public class DailyTotal{
 
@@ -64,18 +66,20 @@ public class DailyTotal{
     }
     public void SaveDT()
     {
+        TotalsDictUpdate();
         string filePath = "saveFolder\\userDT.csv";
         // overrite old data
-        File.Create(filePath);
-        
-        foreach(var kvp in _dailyTotals)
+        using (StreamWriter writer = new StreamWriter(filePath, false))
         {
-        string dtString = $"{kvp.Key}|{kvp.Value}\n";
+            foreach(var kvp in _dailyTotals)
+            {
+                string dtString = $"{kvp.Key}|{kvp.Value[0]}|{kvp.Value[1]}|{kvp.Value[2]}|{kvp.Value[3]}\n";
+                writer.Write(dtString);
+            }
 
-        File.AppendAllText(dtString, filePath);
+            Console.WriteLine("DailyTotal successfully saved");
+
         }
-
-        Console.WriteLine("DailyTotal successfully saved");
 
     }
     public void LoadDT()
