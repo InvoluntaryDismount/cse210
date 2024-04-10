@@ -8,7 +8,7 @@ public class DailyTotal{
     public const int fatsIndex = 1;
     public const int carbsIndex = 2;
     public const int calIndex = 3;
-    Dictionary<DateOnly, List<int>> dailyTotals = new Dictionary<DateOnly, List<int>>();
+    private Dictionary<DateOnly, List<int>> _dailyTotals = new Dictionary<DateOnly, List<int>>();
     
 
     public DailyTotal()
@@ -42,12 +42,16 @@ public class DailyTotal{
             Console.WriteLine(n);
         }
     }
+    public void TotalsDictUpdate()
+    {
+        _dailyTotals[_date] = _totals;
+    }
 
         public void CheckDay()
     {
         if (_date != DateOnly.FromDateTime(DateTime.Now))
         {
-            dailyTotals[_date] = _totals;
+            TotalsDictUpdate();
             _date = DateOnly.FromDateTime(DateTime.Now);
             _totals = new List<int> {0,0,0,0};
 
@@ -58,9 +62,15 @@ public class DailyTotal{
             }
         }
     }
-    public void SaveDT(DailyTotal dt)
+    public void SaveDT()
     {
-
+        // save to csv
+    }
+    public void LoadDT()
+    {
+        // read in from csv
+        // check dailyTotals for value at current date and if so grab list of totals
+        // set tracker totals to what is in the list
     }
 
 }
